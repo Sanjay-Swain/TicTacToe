@@ -2,13 +2,17 @@ import java.util.Scanner;
 
 public class TicTacToe {
 	
+	static final char[] boardRef = {'$', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+	
 	public static void main(String[] args) {
 		char[] boardGame = {'$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 		
 		try (Scanner scan = new Scanner(System.in)) {
 			boolean running = true;
 			int times = 0;
-			printBoardGame(boardGame);
+			
+			System.out.println("This is the keymaps of input : ");
+			printBoardGame(boardRef);
 			
 			while (running) {
 				String currPlayer = playerTurn(times);
@@ -30,13 +34,24 @@ public class TicTacToe {
 				
 				if (winCheck(boardGame, currPlayerMarker)) {
 					System.out.println(currPlayer + " won the match Congratulation!!");
-					running = false;
+					System.out.print("Do you want to play again (Y|N) :");
+					String response = scan.next();
+					if (response.startsWith("Y") || response.startsWith("y")) {
+						running = true;
+					} else {
+						running = false;
+					}
 				} else if (times > 8) {
 					System.out.println("Oops it's a draw");
-					running = false;
+					System.out.print("Do you want to play again (Y|N) :");
+					String response = scan.next();
+					if (response.startsWith("Y") || response.startsWith("y")) {
+						running = true;
+					} else {
+						running = false;
+					}
 				}
 			}
-			
 		}
 	}
 
@@ -80,7 +95,7 @@ public class TicTacToe {
 		
 		boolean left = (boardGame[1] == marker) && (boardGame[4] == marker) && (boardGame[7] == marker);
 		boolean right = (boardGame[3] == marker) && (boardGame[6] == marker) && (boardGame[9] == marker);
-		boolean column_middle = (boardGame[2] == marker) && (boardGame[5] == marker) && (boardGame[7] == marker);
+		boolean column_middle = (boardGame[2] == marker) && (boardGame[5] == marker) && (boardGame[8] == marker);
 		
 		boolean diagonal1 = (boardGame[1] == marker) && (boardGame[5] == marker) && (boardGame[9] == marker);
 		boolean diagonal2 = (boardGame[3] == marker) && (boardGame[5] == marker) && (boardGame[7] == marker);
