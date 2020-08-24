@@ -3,19 +3,25 @@ import java.util.Scanner;
 public class TicTacToe {
 	
 	static final char[] boardRef = {'$', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-	
+	static String response;
+
 	public static void main(String[] args) {
 		char[] boardGame = {'$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 		
 		try (Scanner scan = new Scanner(System.in)) {
 			boolean running = true;
 			int times = 0;
-			
+
+			System.out.println("Enter the name of first player : ");
+			String player1 = scan.next();
+			System.out.println("Enter the name of second player : ");
+			String player2 = scan.next();
+
 			System.out.println("This is the keymaps of input : ");
 			printBoardGame(boardRef);
 			
 			while (running) {
-				String currPlayer = playerTurn(times);
+				String currPlayer = playerTurn(times, player1, player2);
 				char currPlayerMarker = playerMarker(times);
 				System.out.println("It's " + currPlayer + " turn now.");
 				System.out.println("Enter the position (1-9):");
@@ -35,12 +41,12 @@ public class TicTacToe {
 				if (winCheck(boardGame, currPlayerMarker)) {
 					System.out.println(currPlayer + " won the match Congratulation!!");
 					System.out.print("Do you want to play again (Y|N) :");
-					String response = scan.next();
+					response = scan.next();
 					running = response.startsWith("Y") || response.startsWith("y");
 				} else if (times > 8) {
 					System.out.println("Oops it's a draw");
 					System.out.print("Do you want to play again (Y|N) :");
-					String response = scan.next();
+					response = scan.next();
 					running = response.startsWith("Y") || response.startsWith("y");
 				}
 			}
@@ -48,11 +54,11 @@ public class TicTacToe {
 	}
 
 
-	public static String playerTurn(int times) {
+	public static String playerTurn(int times, String player1, String player2) {
 		if (times % 2 == 0) {
-			return "Player1";
+			return player1;
 		} else {
-			return "Player2";
+			return player2;
 		}
 	}
 
