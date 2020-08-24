@@ -36,20 +36,12 @@ public class TicTacToe {
 					System.out.println(currPlayer + " won the match Congratulation!!");
 					System.out.print("Do you want to play again (Y|N) :");
 					String response = scan.next();
-					if (response.startsWith("Y") || response.startsWith("y")) {
-						running = true;
-					} else {
-						running = false;
-					}
+					running = response.startsWith("Y") || response.startsWith("y");
 				} else if (times > 8) {
 					System.out.println("Oops it's a draw");
 					System.out.print("Do you want to play again (Y|N) :");
 					String response = scan.next();
-					if (response.startsWith("Y") || response.startsWith("y")) {
-						running = true;
-					} else {
-						running = false;
-					}
+					running = response.startsWith("Y") || response.startsWith("y");
 				}
 			}
 		}
@@ -66,7 +58,6 @@ public class TicTacToe {
 
 
 	public static boolean notFilled(char[] boardGame, int pos) {
-		
 		return boardGame[pos] == ' ';
 	}
 
@@ -77,14 +68,11 @@ public class TicTacToe {
 		} else {
 			return 'O';
 		}
-		
 	}
 
 
 	public static void placePiece(char[] boardGame, int pos, char symbol) {
-		
 		boardGame[pos] = symbol;
-		
 	}
 
 
@@ -101,7 +89,6 @@ public class TicTacToe {
 		boolean diagonal2 = (boardGame[3] == marker) && (boardGame[5] == marker) && (boardGame[7] == marker);
 		
 		return top || middle || bottom || right || left || column_middle || diagonal1 ||diagonal2;
-		
 	}
 
 
