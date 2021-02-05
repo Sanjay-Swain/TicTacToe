@@ -2,6 +2,6 @@
 .project
 .classpath
 .idea
-.out
+/out/
 TicTacToe.iml
 *.MF
