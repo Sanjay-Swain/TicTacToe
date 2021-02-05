@@ -11,6 +11,8 @@ public class TicTacToe {
 		try (Scanner scan = new Scanner(System.in)) {
 			boolean running = true;
 			int times = 0;
+			int pos = 0;
+			boolean flag;
 
 			System.out.println("Enter the name of first player : ");
 			String player1 = scan.next();
@@ -19,14 +21,26 @@ public class TicTacToe {
 
 			System.out.println("This is the keymaps of input : ");
 			printBoardGame(boardRef);
-			
+
 			while (running) {
 				String currPlayer = playerTurn(times, player1, player2);
 				char currPlayerMarker = playerMarker(times);
 				System.out.println("It's " + currPlayer + " turn now.");
 				System.out.println("Enter the position (1-9):");
-				int pos = scan.nextInt();
-				
+				do {
+					try {
+						Scanner posInput = new Scanner(System.in);
+						pos = posInput.nextInt();
+						flag = false;
+						if (pos < 1 || pos > 9) {
+							System.out.println("Please Enter a number between 1-9:");
+						}
+					} catch (java.util.InputMismatchException e) {
+						System.out.println("Please Enter a valid integer.. " + e);
+						flag = true;
+					}
+				} while ((pos < 1 || pos > 9) || flag);
+
 				for (int i = 0; i < 50; i++) System.out.println();
 				
 				if (notFilled(boardGame, pos)) {
